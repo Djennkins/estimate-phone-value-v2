@@ -1,38 +1,72 @@
-.App {
-  text-align: center;
+label {
+	font-weight: bold;
+	display: flex;
+	margin-bottom: 5px;
+	color: #9089fc;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+input + label {
+	font-weight: bold;
+	display: inline-flex;
+	margin-right: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+	display: block;
+	width: 400px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.form-control {
+	margin-bottom: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.error {
+	width: 400px;
+	font-weight: 700;
+	color: rgb(201, 17, 17);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button {
+	display: inline-block;
+	padding: 8px 16px;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	border: 1px solid #4a40d2;
+	border-radius: 4px;
+	color: #fff;
+	background-color: #9089fc;
+	width: 100%;
+}
+
+.button:hover {
+	background-color: #4a40d2;
+	border-color: #4a40d2;
+}
+
+.button:active {
+	background-color: #2115cb;
+	border-color: rgb(28, 20, 146);
+}
+
+.button:disabled {
+	cursor: not-allowed;
+	background-color: #bdc3c7;
+	border-color: #bdc3c7;
+	color: #7f8c8d;
 }
