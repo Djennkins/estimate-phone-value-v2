@@ -9,7 +9,7 @@ export default function SurveyForm() {
 	const [price, setPrice] = useState("");
 
 	const getPrice = async (values) => {
-		const url = "http://localhost:8080/calculate-price";
+		const url = "http://localhost:8081/calculate-phone-price";
 
 		try {
 			const response = await fetch(url, {
@@ -25,8 +25,8 @@ export default function SurveyForm() {
 			}
 
 			const data = await response.json();
-			setPrice(data.price);
-			return data();
+			setPrice(data.phonePrice);
+			return data;
 		} catch (error) {
 			console.error("Error:", error);
 		}
