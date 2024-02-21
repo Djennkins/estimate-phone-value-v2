@@ -1,56 +1,45 @@
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
 import { dropdownTypeOptions } from "../data/typeOptions";
 import FormikControl from "./FormikControl";
+import { useState } from "react";
+import { validationSchema } from "../data/validationSchema";
+import { formInitialValues } from "../data/formInitialValues";
 
 export default function SurveyForm() {
-	const initialValues = {
-		type: "",
-		age: "",
-		brokenScreen: "",
-		internalComponents: "",
-		speakerPollution: "",
+	const [price, setPrice] = useState("");
+
+	const getPrice = async (values) => {
+		const url = "http://localhost:8080/calculate-price";
+
+		try {
+			const response = await fetch(url, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(values),
+			});
+
+			if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`);
+			}
+
+			const data = await response.json();
+			setPrice(data.price);
+			return data();
+		} catch (error) {
+			console.error("Error:", error);
+		}
 	};
 
-	const validationSchema = Yup.object({
-		type: Yup.string().required(),
-		age: Yup.number()
-			.required("Enter an age")
-			.integer()
-			.min(0, "Minimal value is 0 year")
-			.when("type", {
-				is: "SMARTPHONE",
-				then: (schema) => schema.max(15, "Age must be less or equal than 15 for smartphone"),
-			})
-			.when("type", {
-				is: "FLIP_PHONE",
-				then: (schema) => schema.max(20, "Age must be less or equal than 20 for flip phone"),
-			})
-			.when("type", {
-				is: "BUTTON",
-				then: (schema) => schema.max(25, "Age must be less or equal than 25 for button phone"),
-			}),
-		brokenScreen: Yup.number()
-			.integer()
-			.min(0, "The minimum percentage must be 0 if the screen is not broken")
-			.max(100, "The maximum percentage must be 100 if the screen is completely broken"),
-		internalComponents: Yup.number()
-			.integer()
-			.min(0, "The minimum percentage must be 0 if the internal components are in terrible condition")
-			.max(100, "The maximum percentage must be 100 if the internal components are in excellent condition"),
-		speakerPollution: Yup.number()
-			.integer()
-			.min(0, "The minimum percentage must be 0 if the speakers are in excellent condition")
-			.max(100, "The minimum percentage must be 0 if the speakers are in awful condition"),
-	});
-
 	const onSubmit = async (values) => {
-		console.log("Form data", values);
+		console.log(JSON.stringify(values));
+		getPrice(values);
 	};
 
 	return (
 		<div className="flex flex-col gap-16">
-			<Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+			<Formik initialValues={formInitialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
 				{(formik) => {
 					return (
 						<Form>
@@ -86,9 +75,9 @@ export default function SurveyForm() {
 					);
 				}}
 			</Formik>
-			<div className="flex justify-between text-2xl font-bold text-fuchsia-400">
+			<div className="flex justify-between text-2xl font-bold price">
 				<span>Price of phone:</span>
-				<span>{}₴</span>
+				<span>{price}₴</span>
 			</div>
 		</div>
 	);

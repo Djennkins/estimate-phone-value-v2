@@ -2,7 +2,7 @@ label {
 	font-weight: bold;
 	display: flex;
 	margin-bottom: 5px;
-	color: #9089fc;
+	color: rgb(189, 200, 201);
 }
 
 input + label {
@@ -40,28 +40,22 @@ select {
 }
 
 .button {
-	display: inline-block;
-	padding: 8px 16px;
-	font-size: 16px;
-	font-weight: bold;
+	background-image: linear-gradient(to right, rgb(5, 14, 62) 0%, #26a0da 55%, #314755 100%);
+	width: 400px;
+	padding: 15px 45px;
 	text-align: center;
-	text-decoration: none;
-	cursor: pointer;
-	border: 1px solid #4a40d2;
-	border-radius: 4px;
-	color: #fff;
-	background-color: #9089fc;
-	width: 100%;
+	text-transform: uppercase;
+	transition: 0.5s;
+	background-size: 200% auto;
+	color: white;
+	border-radius: 10px;
+	display: block;
 }
 
 .button:hover {
-	background-color: #4a40d2;
-	border-color: #4a40d2;
-}
-
-.button:active {
-	background-color: #2115cb;
-	border-color: rgb(28, 20, 146);
+	background-position: right center; /* change the direction of the change here */
+	color: rgba(187, 187, 187, 1) 100.2%;
+	text-decoration: none;
 }
 
 .button:disabled {
@@ -69,4 +63,21 @@ select {
 	background-color: #bdc3c7;
 	border-color: #bdc3c7;
 	color: #7f8c8d;
+}
+
+.grad {
+	background-image: radial-gradient(
+		circle 976px at 51.2% 51%,
+		rgba(11, 27, 103, 1) 0%,
+		rgba(16, 66, 157, 1) 0%,
+		rgba(11, 27, 103, 1) 17.3%,
+		rgba(11, 27, 103, 1) 58.8%,
+		rgba(11, 27, 103, 1) 71.4%,
+		rgba(16, 66, 157, 1) 100.2%,
+		rgba(187, 187, 187, 1) 100.2%
+	);
+}
+
+.price {
+	color: rgb(189, 200, 201);
 }

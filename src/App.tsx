@@ -3,7 +3,7 @@ import EstimateForm from "./components/EstimateForm";
 
 function App() {
 	return (
-		<div className=" h-screen flex justify-center items-center">
+		<div className="relative min-h-screen flex justify-center isolate items-center grad">
 			<EstimateForm />
 		</div>
 	);
