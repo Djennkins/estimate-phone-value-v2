@@ -23,11 +23,7 @@ export const validationSchema = Yup.object({
 		.integer()
 		.min(0, "The minimum percentage must be 0 if the screen is not broken")
 		.max(100, "The maximum percentage must be 100 if the screen is completely broken"),
-	internalComponents: Yup.number()
-		.required()
-		.integer()
-		.min(0, "The minimum percentage must be 0 if the internal components are in terrible condition")
-		.max(100, "The maximum percentage must be 100 if the internal components are in excellent condition"),
+	internalComponents: Yup.string().required(),
 	speakerPollution: Yup.number()
 		.required()
 		.integer()

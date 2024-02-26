@@ -4,6 +4,7 @@ import FormikControl from "./FormikControl";
 import { useState } from "react";
 import { validationSchema } from "../data/validationSchema";
 import { formInitialValues } from "../data/formInitialValues";
+import { internalComponentsOptions } from "../data/internalComponentsOptions";
 
 export default function SurveyForm() {
 	const [price, setPrice] = useState("");
@@ -57,10 +58,10 @@ export default function SurveyForm() {
 								name="brokenScreen"
 							/>
 							<FormikControl
-								control="input"
-								label="Condition of internal components in percent"
-								type="text"
+								control="select"
+								label="Condition of internal components"
 								name="internalComponents"
+								options={internalComponentsOptions}
 							/>
 							<FormikControl
 								control="input"
